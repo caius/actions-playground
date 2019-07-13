@@ -1,4 +1,5 @@
 workflow "env-debug" {
+  on = "push"
   resolves = ["env"]
 }
 
