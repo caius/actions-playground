@@ -1,16 +1,15 @@
 #!/bin/sh
 
 set -eu
-set +o trace
+set +x
 
-apk add nodejs npm openssh
+apk add nodejs npm
+npm install -g localtunnel static-server
 
-/etc/init.d/sshd start
+cat <<HTML > index.html
+<h1>HELLO SHITBRICK</h1>
+HTML
 
-cat <<EOF > ~/.ssh/authorised_keys
-ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBABxRMVJmSIynThNd+ZQsS7b23F5ifPBxsLxKpcR3ddndKHMel3ludphMvyUZtVuI1aeepQHFhcvoG7X3j9C9/V1PACbALnZ+0WS7dsV4u/VjZciSF9rF7eYnyRT5ofbhOnhGla48WXB8sMiTKec3vK8xjb8yuUjCKVP/fvmI3FfD7yNjA==
-EOF
+static-server --port 8080 &
 
-npm install -g localtunnel
-
-lt --port 22
+lt --port 8080
