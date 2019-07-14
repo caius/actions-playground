@@ -12,4 +12,4 @@ HTML
 
 static-server --port 8080 &
 
-lt --port 8080
+lt --port 8080 --subdomain testingtestingstuff
