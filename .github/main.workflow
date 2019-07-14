@@ -1,4 +1,5 @@
 workflow "ssh-eh" {
+  on = "push"
   resolves = ["tunnelled-ssh"]
 }
 
